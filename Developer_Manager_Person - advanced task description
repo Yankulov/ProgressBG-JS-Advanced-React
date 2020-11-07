@@ -1,0 +1,45 @@
+const Person = function (name, age) {
+  this.name = name;
+  this.age = age;
+};
+
+Person.prototype.greet = function () {
+  if (this.skillset) {
+    console.log(`Hi, I'm ${this.name} and I'm ${this.age} years old \n I know ${this.skillset}`);
+  } else if (this.managees) {
+    let dev = [];
+    for (let i = 0; i < this.managees.length; i++) {
+      dev.push(this.managees[i].name);
+    }
+    console.log(`I manage ${dev.toString()}`);
+  }
+};
+
+const Manager = function (name, age, managees) {
+  Person.call(this, name, age);
+  this.managees = managees;
+};
+
+Manager.prototype = Object.create(Person.prototype);
+
+const Developer = function (name, age, skillset) {
+  Person.call(this, name, age);
+  this.skillset = skillset;
+};
+
+Developer.prototype = Object.create(Person.prototype);
+
+let maria = new Developer('Maria Popova', 23, [
+  'Python', 
+  'Machine Learning'
+]);
+let pesho = new Developer('Petar Petrov', 19, [
+  'JavaScript',
+  'Angular',
+  'React',
+  'Vue',
+]);
+let gates = new Manager('Bill Gates', 43, [maria, pesho]);
+maria.greet();
+pesho.greet();
+gates.greet();
