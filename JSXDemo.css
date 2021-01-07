@@ -1,0 +1,9 @@
+li {
+    padding: 1em;
+}
+.odd {
+    background-color: lightgray;
+}
+.even {
+    background-color: gray;
+}
